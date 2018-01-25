@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>
+            Create User
+        </title>
+        <meta content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href="/css/styleSheet.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        type="text/javascript" xml:space="preserve"></script>
+
+<style type="text/css" xml:space="preserve">
+        .navbar-inv {
+        background-color: #222;
+        border-color: #080808;
+        }
+
+        @media (min-width: 768px)
+        navbar.less:37
+        .navbar {
+        border-radius: 4px;
+        }
+
+        .navbar {
+        position: relative;
+        min-height: 50px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        display: block;
+        }
+
+        * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+        a {
+        color: white;
+        text-decoration: none;
+        }
+
+        .logo{
+        width:250px;
+        height:100px;
+        padding-top:15px;
+        padding-left:20px;
+        }
+
+            /*Header Three: setting */
+        h4 {
+            position: relative;
+            /* controls margin between parent objects*/
+            margin:0;
+            width: 100%;
+            height: 40px;
+            background:#262626;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        /*Header Two: wrapper*/
+        h4 span {
+            color: white;
+            font: bold 24px/30px Helvetica, Sans-Serif;
+            letter-spacing: 1px;
+            padding: 10px;
+        }
+
+        body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+
+
+</style>
+    </head>
+
+
+    <body>
+    <nav class="navbar navbar-inv">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/adminDashboard.html"><span class="glyphicon glyphicon-home"></span>Home</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>
+                        Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="logo">
+        <a href="www.ideagen.com" class="ideagen-logo" title="Ideagen.com"><img src="/images/ideagen-logo-full-colour.svg" alt="Ideagen PLC" /></a>
+    </div>
+    <h4>
+        <span>Create User</span>
+    </h4>
+    <form method="POST" name="user" th:action="@{/admin/user/create}" th:object="${user}">
+            <div class="container">
+                <div class="row centered-form">
+                    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Create User Account <small>Administrator</small>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                            name="firstname"
+                                            class="form-control" placeholder="first name" th:field="*{firstname}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                            name="surname"
+                                            class="form-control input-sm" placeholder="surname" th:field="*{surname}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input name="username"
+                                    class="form-control input-sm" placeholder="username" th:field="*{username}" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password"
+                                            name="password"
+                                            class="form-control input-sm" placeholder="password" th:field="*{password}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <select name="role"
+                                            class="form-control input-sm" th:field="*{role}">
+                                            <option value="ROLE_AUTHOR">
+                                                ROLE_AUTHOR
+                                            </option>
+                                            <option value="ROLE_DISTRIBUTEE">
+                                                ROLE_DISTRIBUTEE
+                                            </option>
+                                            <option value="ROLE_ADMIN">
+                                                ROLE_ADMIN
+                                            </option></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Create Account"
+                                class="btn btn-info btn-block" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

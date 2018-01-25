@@ -1,0 +1,182 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>View Document</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="/css/styleSheet.css" rel="stylesheet" type="text/css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/userDashboard.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a href="/upload"><span class="glyphicon glyphicon-upload"></span>Upload</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+<header>
+    <div class = "logo">
+        <a href="/" class="ideagen-logo" title="Ideagen.com"><img src = "/images/ideagen-logo-full-colour.svg" alt="Ideagen PLC" /></a>
+    </div>
+</header>
+<br />
+
+    <div class="col-sm-7 col-md-12">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a href ="/userDashboard.html" title="Back" type="button" class="btn btn-sm btn-success">
+                        <i class="glyphicon glyphicon-circle-arrow-left"></i></a>
+                    <h3 class="panel-title">Document View</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">  <img src="/images/document-image.png" alt="Doc" class="img-responsive"/> </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table id = "docTable" class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>ID: </td>
+                                    <td id ="id"></td>
+                                </tr>
+                                <tr>
+                                    <td>Title: </td>
+                                    <td id = "title"></td>
+                                </tr>
+                                <tr>
+                                    <td>Author: </td>
+                                    <td id = "author"></td>
+                                </tr>
+                                <tr>
+                                    <td>Active: </td>
+                                    <td id = "active"></td>
+                                </tr>
+                                <tr>
+                                    <td>Revisions: </td>
+                                    <td id = "revisions"></td>
+                                </tr>
+                                <tr>
+                                    <td>Date Created: </td>
+                                    <td id ="date"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-1">
+                                <div class="hero-widget well well-sm">
+                                    <div class="icon">
+                                        <i class="glyphicon glyphicon-download"></i>
+                                    </div>
+                                    <div class="text">
+                                        <label class="text-muted">Download Document</label>
+                                    </div>
+                                    <div class="options">
+                                        <a id ="downloadLink" href="javascript:;" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok-sign"></i> Select</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () 
+{
+  var user;
+  $.getJSON("/rest/getLoggedUser",function(result)
+  {
+    user = result;
+    console.log(user);
+
+    var doc;
+	var url = location.href.split("/");
+	var docId = url[url.length-1];
+	
+    $.getJSON("/rest/document/byId/"+ docId + "/",function(result)
+	{
+      console.log(result);
+      doc = result;
+	  
+	  $("#id").append(doc.id);
+	  $("#title").append(doc.title);
+	  $("#author").append(doc.author);
+	  var active;
+	  if (doc.active == true) { active = "Yes"; }
+	  else { active = "No"; }
+	  $("#active").append(active);
+	  $("#revisions").append(doc.revisionNo);
+	  var date = new Date(doc.creationDate);
+	  $("#date").append(date.toLocaleString());
+	  
+	  if (user.username == doc.author) // If user is the document author 
+	  {
+		console.log("if");
+		$("#downloadLink").attr("href","/files/" + doc.author + "/" + doc.id + "/" + doc.revisionNo +"/");
+  		/* Create and wrap action buttons */
+		var wrapPrefix = '<td><div class="action-buttons">';
+		var wrapSuffix = '</div></td>';
+		var activateButton = '<button type = "button" id = "activateButton" href = "" onclick = "toggleActivation()" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok-sign"></i>Toggle Active</button>';
+		var uploadRevisionButton = '<a href = "/uploadRevision/' + doc.id + '" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok-sign"></i>Upload Revision</a>';
+		var allRevisionsButton = '<a href = "/revisions/' + doc.id + '" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok-sign"></i>Previous Revisions</a>';
+		
+		var authorButtons = '<tr>' + wrapPrefix + activateButton + allRevisionsButton + uploadRevisionButton + wrapSuffix + '</tr>';
+		$("#docTable").append(authorButtons);
+	  }
+	  
+	  else if (doc.active == true) // if document is shared with user and is active
+	  {
+		  console.log("else if");
+		  console.log(doc.active);
+		  $("#downloadLink").attr("href","/files/" + doc.author + "/" + doc.id + "/" + doc.revisionNo +"/");
+	  }
+	  
+	  else // if document is not owned by the user and is not active
+	  {
+		  console.log("else");
+		  $("#downloadLink").click(function()
+		  {
+			  alert("The document must be activated by the author " + doc.author + " before it can be downloaded!");
+		  });
+	  }
+	  
+    });
+  });
+});
+
+function toggleActivation()
+{
+	var doc;
+	var url = location.href.split("/");
+	var docId = url[url.length-1];
+	$.getJSON("/rest/toggleActivation/" + docId, function(result)
+	{
+		if (result.type == "document")
+		{
+			doc = result;
+			var active;
+			if (doc.active == true) { active = "Yes"; }
+			else { active = "No"; }
+			$("#active").html(active);
+		}
+	});
+}
+</script>
+
+</body>
+</html>

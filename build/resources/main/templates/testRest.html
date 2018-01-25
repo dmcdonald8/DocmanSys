@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<label>Document ID
+    <input type="text" id="docIdBox" />
+</label>
+<span id="docIdButton" style="cursor: pointer; text-decoration: underline">
+  Search
+</span>
+<label>Show all docs
+<input type="button" id="allDocsBtn"/>
+</label>
+<ul class ="displayList">
+
+</ul>
+<c:url var="url" value="/resources/images/ideagen-logo-full-colour.svg" />
+<img alt="image"  src="${url}" />
+<script>
+
+    var httpRequest;
+    var url;
+
+    // Javascript method that logs in console
+    document.getElementById("docIdButton").onclick = function () {
+        var id = document.getElementById("docIdBox").value;
+        url = "rest/document/byId/" + id;
+        makeRequest(url);
+    }
+
+    function makeRequest(url) {
+        httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+          alert('Giving up :( Cannot create an XMLHTTP instance');
+          return false;
+        }
+        httpRequest.onreadystatechange = logContents;
+        httpRequest.open('GET', url);
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.send();
+    }
+
+    function logContents() {
+        if(httpRequest.readyState === XMLHttpRequest.DONE) {
+            if(httpRequest.status === 200) {
+                console.log(JSON.parse(httpRequest.responseText));
+            }
+            else {
+                console.log("there was a problem with the http status");
+            }
+        }
+    }
+
+    // JQuery Ajax method that displays in page as list
+    $("#allDocsBtn").click(function(){
+        var listArea = $("ul.displayList");
+        $.getJSON('rest/document/getAll/', function(result){
+                console.log(result); // for debugging only
+                $.each(result, function(i, item){
+                    $("ul.displayList").append('<br/>');
+                    $.each(item, function(key, value){
+                        $("ul.displayList").append('<li>'+key+' : ' + value + '</li>');
+                    });
+                });
+        });
+    });
+</script>
+
+
+</body>
+</html>

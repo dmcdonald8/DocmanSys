@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <!--  Main Header Section -->
+  <head>
+    <meta content="" />
+    <!--  Main title -->
+    <title>
+      Admin Dashboard
+    </title>
+    <!--  Css links -->
+    <!--  Ross' stuff -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/css/styleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--  Main CSS -->
+    <style type="text/css" xml:space="preserve">
+        /* Admin Dashboard Custom CSS Page */
+        /* Ryan Graham Cobb */
+        /* Application to the Admin dashboard */
+
+      .navbar-inv {
+        background-color: #222;
+        border-color: #080808;
+    }
+
+      @media (min-width: 768px)
+        navbar.less:37
+        .navbar {
+        border-radius: 4px;
+      }
+
+     .navbar {
+       position: relative;
+        min-height: 50px;
+        margin-bottom: 20px;
+      border: 1px solid transparent;
+      }
+
+      article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        display: block;
+      }
+
+    * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+.logo{
+    width:250px;
+    height:100px;
+    padding-top:15px;
+    padding-left:20px;
+}
+
+        /* Heading Control */
+        /*Header One; setting */
+        h1 {
+            position: relative;
+            /* controls margin between parent objects*/
+            margin:0;
+            width: 100%;
+            height: 45px;
+            /* Border Colour control */
+            background:#262626;
+            z-index: -1;
+        }
+        /*Header One; wrapper*/
+        h1 span {
+            /* Text Colour */
+            color: white;
+            font: bold 20px/30px Helvetica, Sans-Serif;
+            letter-spacing: 1px;
+            padding: 10px;
+        }
+
+        /*Header Three: setting */
+        h3 {
+            position: relative;
+            /* controls margin between parent objects*/
+            margin:0;
+            width: 100%;
+            height: 40px;
+            background:#262626;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        /*Header Two: wrapper*/
+        h3 span {
+            color: white;
+            font: bold 24px/30px Helvetica, Sans-Serif;
+            letter-spacing: 1px;
+            padding: 10px;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            width: 33.3%;
+            float: left;
+        }
+
+        /* Image control */
+        .image {
+            display: block;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            transition: all .5s ease;
+            opacity: 1;
+            -webkit-transition: all 0.3s;
+        }
+
+        /* Overlap control */
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            transition: all .5s ease;
+            opacity: 1;
+            -webkit-transition: all 0.3s;
+
+        }
+
+        /* Mouse hover control */
+        .container:hover .overlay {
+            opacity: 0.5;
+            transform: scale(1.2, 1.2);
+
+        }
+
+        .container:hover .image {
+        opacity: 1;
+            transform: scale(1.2, 1.2);
+        }
+
+        /* Section Two control */
+        .text {
+            color: black;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+        /* User Table CSS */
+        /* Ryan G Cobb */
+
+        /*Search box function */
+        #UserInput {
+            /* Search Icon image */
+            background-image: url('/images/Search.png');
+            /* Icon position */
+            background-position: 10px 12px;
+            /* troubleshoot, don't delete. */
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        /* Main table control block */
+        #UserTable {
+            border-collapse: collapse;
+            width: 100%;
+            /* Table border width and colour control */
+            border: 1px solid #262626;
+            font-size: 18px;
+        }
+
+        /* Table Heading, TD control block */
+        #UserTable th, #UserTable td {
+            /* Text Alignment control */
+            text-align: left;
+            /* table padding */
+            padding: 12px;
+            text-decoration-color: white;
+        }
+
+        /* */
+        #UserTable tr {
+            /* Bottom Border Controls */
+            border-bottom: 1px solid #ddd;
+        }
+
+        #UserTable tr.header, #UserTable tr:hover {
+            /* Hover colour control */
+            background-color: #f1f1f1;
+        }
+
+    </style>
+    <!--  Main CSS End -->
+    <!--  Header Closer -->
+  </head>
+  <!--  Main Body code Start -->
+  <body>
+    <!--  Navigation Bar Section -->
+    <nav class="navbar navbar-inv">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand"></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="/adminDashboard.html"><span class="glyphicon glyphicon-home"></span>Home</a>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>
+          Logout</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
+    <!--  Navigation Bar end -->
+    <!--  Logo Code -->
+    <div class="logo">
+      <a href="www.ideagen.com" class="ideagen-logo" title="Ideagen.com"><img src="/images/ideagen-logo-full-colour.svg" alt="Ideagen PLC" /></a>
+    </div>
+    <!--  Logo Code end -->
+    <h3>
+      <span>Admin Dashboard</span>
+    </h3>
+    <!--  Create_User HTMl access button -->
+    <div class="container">
+
+      <!--  path control -->
+      <a href="/admin/user/create">
+      <!--  Image path control -->
+      <img src="images/AddUser.png" alt="Avatar" class="image" />
+      <div class="overlay">
+        <div class="text">
+          Create a User
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <!--  Full Dynamic Table function, with search function -->
+    <!--  Main User Table -->
+    <input type="text" id="UserInput" onkeyup="myFunction()" />
+     <!--  Search section Script --> 
+	 <script type="text/javascript" xml:space="preserve">//<![CDATA[
+	    $( document ).ready(function()
+		{
+			var allUsers;
+			$.getJSON('rest/user/getAll', function(result)
+			{
+				if(result != null) // Check result exists
+				{
+					if (result.length > 0) // Check its not empty
+					{ 
+						if(result[0].type != "error") // Check its not full of errors
+						{
+							allUsers = result;
+							console.log(allUsers); // for debug
+							$.each(allUsers, function(i, item) // loop through all the users
+							{
+								/* Create a table cell markup for each user property */
+								var firstName = "<td>" + item.firstname +"</td>";
+								var surname = "<td>" + item.surname + "</td>";
+								var username = "<td>" + item.username + "</td>";
+								var id ="<td>" + item.id + "</td>";
+								var role = "<td>" + item.role + "</td>";
+								var action ='<td><a href="/admin/user/' + item.id +'">' + '<img src ="/images/editUserSmall.png" alt = "EditUser" /> </a></td>';
+								var row = "<tr>" + firstName + surname + username + id + role + action + "</tr>"; // Wrap cells in table row markup
+								console.log(row); // for debug
+								$("#UserTable").append(row);  // add to table
+							});
+						}
+						
+					}
+				}
+		});
+	});
+	 
+	 
+	 
+    //Script to control search bar
+    //My Jscript sucks, amend accordingly
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("UserInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("UserTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            //Amend "[2]" to the number of the column to search correctly
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+//]]></script>
+     <!--  Main Table Class -->
+    <table id="UserTable">
+      <!--  Open Table section -->
+      <tr class="header">
+        <!--  Main column headings, with width control -->
+        <!--  Full width control from here, css is a pain. -->
+        <!--  User First name -->
+        <th style="width:20%;">
+          Firstname
+        </th>
+        <!--  User Surname -->
+        <th style="width:20%;">
+          Surname
+        </th>
+        <!--  User Username, yo dawg... -->
+        <th style="width:20%;">
+          Username
+        </th>
+        <!--  User Password -->
+        <th style="width:10%;">
+          UID
+        </th>
+        <!--  User Role -->
+        <th style="width:15%;">
+          Role
+        </th>
+        <!-- Actions -->
+        <th style="width:15%;">
+          Actions
+        </th>
+      </tr>
+      <tbody>
+      
+      </tbody>
+    </table>
+  </body>
+</html>

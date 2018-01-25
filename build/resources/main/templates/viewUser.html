@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>
+            viewUser
+        </title>
+        <meta content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href="/css/styleSheet.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        type="text/javascript" xml:space="preserve"></script><script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        type="text/javascript" xml:space="preserve"></script>
+    </head>
+    <body>
+
+    <nav class = "navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/adminDashboard.html"><span
+                    class="glyphicon glyphicon-home"></span>Home</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+
+    <header>
+        <div class="logo">
+            <a href="www.ideagen.com" class="ideagen-logo" title="Ideagen.com"><img src="/images/ideagen-logo-full-colour.svg" alt="Ideagen PLC" /></a>
+        </div>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <a href ="/adminDashboard" title="Back" type="button"
+                            class="btn btn-sm btn-success"><i
+                            class="glyphicon glyphicon-circle-arrow-left"></i></a>
+                            <h3 class="panel-title">
+                                User Details
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center">
+                                    <img src="/images/user-avatar.png" alt=""
+                                    class="img-circle img-responsive" />
+                                </div>
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    First Name:
+                                                </td>
+                                                <td th:text="${user.firstname}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surname:
+                                                </td>
+                                                <td th:text="${user.surname}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Username:
+                                                </td>
+                                                <td th:text="${user.username}">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a title="Archive User" type="button"
+                            class="btn btn-sm btn-primary"><i
+                            class="glyphicon glyphicon-inbox"></i></a>
+                            <span class="pull-right"> <a
+                            th:href="'/admin/user/edit/'+${user.id}" title="Edit User" type="button"
+                            class="btn btn-sm btn-warning"><i
+                            class="glyphicon glyphicon-edit"></i></a>
+                            <a title="Remove User" type="button"
+                            class="btn btn-sm btn-danger"
+                            th:href="'/admin/user/delete/'+${user.id}"
+                            ><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

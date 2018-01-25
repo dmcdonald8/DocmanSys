@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>
+        Upload
+    </title>
+    <meta content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="/css/styleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/><script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        type="text/javascript" xml:space="preserve"></script><script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        type="text/javascript" xml:space="preserve"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"></a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li class="active">
+            <a href="/userDashboard.html"><span
+                    class="glyphicon glyphicon-home"></span>Home</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>
+                Log Out</a>
+        </li>
+    </ul>
+</div>
+</nav>
+
+<header>
+<div class="logo">
+    <a href="" class="ideagen-logo" title="Ideagen.com"><img src="/images/ideagen-logo-full-colour.svg" alt="Ideagen PLC" /></a>
+</div>
+</header>
+<!--<form method="post" enctype="multipart/form-data">-->
+<form name="upload" action="/" th:action="@{uploadLanding}" th:object="${document}" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Upload files</strong> <small>
+                    </small>
+                    </div>
+                    <div class="panel-body">
+
+                        <label class="control-label" >Title:</label>
+                        <input class = "file" type="text" th:field="*{title}" />
+                        <label class="control-label">Select File:</label>
+
+                        <input id="input-2" type="file" name="file" class="file"/>
+                        <button type="button" class="btn btn-default file-preview-clear" value="Reset">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Clear </button>
+                        <!-- file-preview-input -->
+                        <button type="submit" class="btn btn-labeled btn-primary" value="Submit">
+                                <span class="btn-label"><i class="glyphicon glyphicon-upload"></i>
+                            </span> Upload </button>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+<form method="POST" name="document" th:action="@{/create}" th:object="${document}">
+
+    <p>Revision Number: <input name="revisionNo" th:field="*{revisionNo}" /></p>
+    <p>Title: <input name="title" th:field="*{title}" /></p>
+    <p>File path: <input name="filepath" th:field="*{filepath}" /></p>
+    <p>Active: <input type="checkbox" name="active" th:field="*{active}" /></p>
+
+    <input type="submit" />
+
+</form>
+
+</body>
+</html>
